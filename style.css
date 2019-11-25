@@ -1,0 +1,46 @@
+* {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    cursor: default;
+}
+
+#field {
+    border: 5px solid black;
+    border-collapse: collapse;
+    margin: 20px auto;
+}
+
+.cell {
+    font-size: 30px;
+    border: 1px solid black;
+    width: 32px;
+    text-align: center;
+}
+
+.bolder {
+    font-weight: bold;
+}
+
+.border-right {
+    border-right: 3px solid black;
+}
+
+.border-bottom {
+    border-bottom: 3px solid black;
+}
+
+.chosen {
+    background-color: rgba(24, 141, 8, 0.281);
+}
+
+h1 {
+    text-align: center;
+    font-size: 45px;
+}
+
+#start {
+    margin: 10px auto;
+    display: block;
+    font-size: 30px;
+}
