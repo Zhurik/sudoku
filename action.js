@@ -279,8 +279,13 @@ function choose_cell() {
 
 }
 
-function handle(event) {
-    alert(event);
+function handle() {
+    if (current_cell.row != -1) {
+        var number = parseInt(String.fromCharCode(event.charCode));
+        if (number > 0) {
+            document.getElementById("field").rows[current_cell.row].cells[current_cell.coll].innerHTML = number;
+        }
+    }
 }
 
 // Начинаем игру по нажатию кнопки
