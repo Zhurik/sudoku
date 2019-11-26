@@ -279,7 +279,7 @@ function choose_cell() {
     this.className += " chosen";
 }
 
-function check_end() {
+function check_game_over() {
     var table = document.getElementById("field");
 
     for (var i = 0; i < table.rows.length; i++) {
@@ -289,7 +289,9 @@ function check_end() {
             }
         }
     }
-    alert("Молодец!!!");
+
+    alert("Игра закончена!!!");
+    alert("Для новой игры обновите страницу");
     return true;
 }
 
@@ -301,7 +303,12 @@ function process_number() {
         }
     }
 
-    check_end();
+    if (check_game_over()) {
+        process_number = function() {
+            alert("Игра закончена! Обновите страницу!");
+            return;
+        }
+    }
 }
 
 // Начинаем игру по нажатию кнопки
@@ -353,7 +360,6 @@ function start_game() {
                 table.rows[i].cells[j].className += " bolder";
             } else {
                 table.rows[i].cells[j].addEventListener('click', choose_cell, false);
-                table.rows[i].cells[j].onkeypress = process_number;
                 table.rows[i].cells[j].innerHTML = "";
             }
         }
