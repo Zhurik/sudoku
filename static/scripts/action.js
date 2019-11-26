@@ -17,6 +17,20 @@ function get_random_int(minimum, maximum) {
     return Math.floor(Math.random() * (maximum - minimum + 1)) + minimum;
 }
 
+function check_column(grid, column, number) {
+    return [
+        grid[0][column],
+        grid[1][column],
+        grid[2][column],
+        grid[3][column],
+        grid[4][column],
+        grid[5][column],
+        grid[6][column],
+        grid[7][column],
+        grid[8][column]
+    ].indexOf(number) == -1
+}
+
 function check_grid(grid) {
     for (var i = 0; i < grid.length; i++) {
         for (var j = 0; j < grid[i].length; j++) {
@@ -65,17 +79,7 @@ function generate_field(grid) {
 
             number_list.forEach(function(number) {
                 if (grid[cur_row].indexOf(number) == -1) {
-                    if ([
-                        grid[0][cur_col],
-                        grid[1][cur_col],
-                        grid[2][cur_col],
-                        grid[3][cur_col],
-                        grid[4][cur_col],
-                        grid[5][cur_col],
-                        grid[6][cur_col],
-                        grid[7][cur_col],
-                        grid[8][cur_col]
-                    ].indexOf(number) == -1) {
+                    if (check_column(grid, cur_col, number)) {
                         var square = [];
                         if (cur_row < 3) {
                             if (cur_col < 3) {
@@ -177,17 +181,7 @@ function solve_grid(grid) {
         if (grid[cur_row][cur_col] == 0) {
             for (var number = 1; number < 10; number++) {
                 if (grid[cur_row].indexOf(number) == -1) {
-                    if ([
-                        grid[0][cur_col],
-                        grid[1][cur_col],
-                        grid[2][cur_col],
-                        grid[3][cur_col],
-                        grid[4][cur_col],
-                        grid[5][cur_col],
-                        grid[6][cur_col],
-                        grid[7][cur_col],
-                        grid[8][cur_col]
-                    ].indexOf(number) == -1) {
+                    if (check_column(grid, cur_col, number)) {
                         var square = [];
                         if (cur_row < 3) {
                             if (cur_col < 3) {
@@ -277,9 +271,10 @@ function solve_grid(grid) {
 
 function choose_cell() {
     if (current_cell.row != -1) {
-        var old_cell = document.getElementById("field").rows[current_cell.row].cells[current_cell.coll].className;
-        document.getElementById("field").rows[current_cell.row].cells[current_cell.coll].className = old_cell.slice(0, old_cell.indexOf(" chosen"));
+        var old_cell = document.getElementById("field").rows[current_cell.row].cells[current_cell.coll];
+        old_cell.className = old_cell.className.slice(0, old_cell.className.indexOf(" chosen"));
     }
+
     current_cell.row = this.id.split("_")[0];
     current_cell.coll = this.id.split("_")[1];
     this.className += " chosen";
