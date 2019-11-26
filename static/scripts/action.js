@@ -11,6 +11,12 @@ var answer = null;
 var counter = 0;
 var attempts = 5;
 
+function get_random_int(minimum, maximum) {
+    minimum = Math.ceil(minimum);
+    maximum = Math.floor(maximum);
+    return Math.floor(Math.random() * (maximum - minimum + 1)) + minimum;
+}
+
 function check_grid(grid) {
     for (var i = 0; i < grid.length; i++) {
         for (var j = 0; j < grid[i].length; j++) {
@@ -330,12 +336,12 @@ function start_game() {
     var table = document.getElementById("field");
 
     while (attempts > 0) {
-        var cur_row = Math.floor(Math.random() * 9);
-        var cur_col = Math.floor(Math.random() * 9);
+        var cur_row = get_random_int(0, 8);
+        var cur_col = get_random_int(0, 8);
 
         while (grid[cur_row][cur_col] == 0) {
-            cur_row = Math.floor(Math.random() * 9);
-            cur_col = Math.floor(Math.random() * 9);
+            cur_row = get_random_int(0, 8);
+            cur_col = get_random_int(0, 8);
         }
 
         var backup = grid[cur_row][cur_col];
