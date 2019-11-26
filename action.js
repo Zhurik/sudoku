@@ -6,6 +6,8 @@ var current_cell = {
     coll: -1
 }
 
+var answer = null;
+
 var counter = 0;
 var attempts = 5;
 
@@ -275,17 +277,31 @@ function choose_cell() {
     current_cell.row = this.id.split("_")[0];
     current_cell.coll = this.id.split("_")[1];
     this.className += " chosen";
-
-
 }
 
-function handle() {
+function check_end() {
+    var table = document.getElementById("field");
+
+    for (var i = 0; i < table.rows.length; i++) {
+        for (var j = 0; j < table.rows[i].cells.length; j++) {
+            if (parseInt(table.rows[i].cells[j].innerHTML) != answer[i][j]) {
+                return false;
+            }
+        }
+    }
+    alert("Молодец!!!");
+    return true;
+}
+
+function process_number() {
     if (current_cell.row != -1) {
         var number = parseInt(String.fromCharCode(event.charCode));
         if (number > 0) {
             document.getElementById("field").rows[current_cell.row].cells[current_cell.coll].innerHTML = number;
         }
     }
+
+    check_end();
 }
 
 // Начинаем игру по нажатию кнопки
@@ -301,6 +317,8 @@ function start_game() {
 
     // Генерируем очередное поле
     generate_field(grid);
+
+    answer = copy_arr(grid);
 
     var table = document.getElementById("field");
 
@@ -335,7 +353,7 @@ function start_game() {
                 table.rows[i].cells[j].className += " bolder";
             } else {
                 table.rows[i].cells[j].addEventListener('click', choose_cell, false);
-                table.rows[i].cells[j].onkeypress = handle;
+                table.rows[i].cells[j].onkeypress = process_number;
                 table.rows[i].cells[j].innerHTML = "";
             }
         }
