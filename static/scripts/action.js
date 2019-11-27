@@ -233,10 +233,12 @@ function check_game_over() {
 }
 
 function process_number() {
+    var button = parseInt(event.keyCode);
     if (current_cell.row != -1) {
-        var number = parseInt(String.fromCharCode(event.charCode));
-        if (number > 0) {
-            document.getElementById("field").rows[current_cell.row].cells[current_cell.coll].innerHTML = number;
+        if (button == 8 || button == 46) {
+            document.getElementById("field").rows[current_cell.row].cells[current_cell.coll].innerHTML = "";
+        } else if (button >= 49 && button <= 57) {
+            document.getElementById("field").rows[current_cell.row].cells[current_cell.coll].innerHTML = button - 48;
         }
     }
 
@@ -309,4 +311,3 @@ function start_game() {
 // TODO Подсвечивать неправильные ячейки
 // TODO Выбор темы
 // TODO Адаптивное выравнивание
-// TODO Удаление цифр
