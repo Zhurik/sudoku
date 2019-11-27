@@ -31,6 +31,14 @@ function check_column(grid, column, number) {
     ].indexOf(number) == -1
 }
 
+function get_square(grid, row, col) {
+    var square = [];
+    for (var i = 0; i < 3; i++) {
+        square = square.concat(grid[row + i].slice(col, col + 3));
+    }
+    return square;
+}
+
 function check_grid(grid) {
     for (var i = 0; i < grid.length; i++) {
         for (var j = 0; j < grid[i].length; j++) {
@@ -83,67 +91,31 @@ function generate_field(grid) {
                         var square = [];
                         if (cur_row < 3) {
                             if (cur_col < 3) {
-                                square = [
-                                    grid[0].slice(0, 3),
-                                    grid[1].slice(0, 3),
-                                    grid[2].slice(0, 3)
-                                ]
+                                square = get_square(grid, 0, 0);
                             } else if (cur_col < 6) {
-                                square = [
-                                    grid[0].slice(3, 6),
-                                    grid[1].slice(3, 6),
-                                    grid[2].slice(3, 6)
-                                ]
+                                square = get_square(grid, 0, 3);
                             } else {
-                                square = [
-                                    grid[0].slice(6, 9),
-                                    grid[1].slice(6, 9),
-                                    grid[2].slice(6, 9)
-                                ]
+                                square = get_square(grid, 0, 6);
                             }
                         } else if (cur_row < 6) {
                             if (cur_col < 3) {
-                                square = [
-                                    grid[3].slice(0, 3),
-                                    grid[4].slice(0, 3),
-                                    grid[5].slice(0, 3)
-                                ]
+                                square = get_square(grid, 3, 0);
                             } else if (cur_col < 6) {
-                                square = [
-                                    grid[3].slice(3, 6),
-                                    grid[4].slice(3, 6),
-                                    grid[5].slice(3, 6)
-                                ]
+                                square = get_square(grid, 3, 3);
                             } else {
-                                square = [
-                                    grid[3].slice(6, 9),
-                                    grid[4].slice(6, 9),
-                                    grid[5].slice(6, 9)
-                                ]
+                                square = get_square(grid, 3, 6);
                             }
                         } else {
                             if (cur_col < 3) {
-                                square = [
-                                    grid[6].slice(0, 3),
-                                    grid[7].slice(0, 3),
-                                    grid[8].slice(0, 3)
-                                ]
+                                square = get_square(grid, 6, 0);
                             } else if (cur_col < 6) {
-                                square = [
-                                    grid[6].slice(3, 6),
-                                    grid[7].slice(3, 6),
-                                    grid[8].slice(3, 6)
-                                ]
+                                square = get_square(grid, 6, 3);
                             } else {
-                                square = [
-                                    grid[6].slice(6, 9),
-                                    grid[7].slice(6, 9),
-                                    grid[8].slice(6, 9)
-                                ]
+                                square = get_square(grid, 6, 6);
                             }
                         }
 
-                        if (square[0].concat(square[1]).concat(square[2]).indexOf(number) == -1) {
+                        if (square.indexOf(number) == -1) {
                             grid[cur_row][cur_col] = number;
 
                             if (check_grid(grid)) {
@@ -185,67 +157,31 @@ function solve_grid(grid) {
                         var square = [];
                         if (cur_row < 3) {
                             if (cur_col < 3) {
-                                square = [
-                                    grid[0].slice(0, 3),
-                                    grid[1].slice(0, 3),
-                                    grid[2].slice(0, 3)
-                                ]
+                                square = get_square(grid, 0, 0);
                             } else if (cur_col < 6) {
-                                square = [
-                                    grid[0].slice(3, 6),
-                                    grid[1].slice(3, 6),
-                                    grid[2].slice(3, 6)
-                                ]
+                                square = get_square(grid, 0, 3);
                             } else {
-                                square = [
-                                    grid[0].slice(6, 9),
-                                    grid[1].slice(6, 9),
-                                    grid[2].slice(6, 9)
-                                ]
+                                square = get_square(grid, 0, 6);
                             }
                         } else if (cur_row < 6) {
                             if (cur_col < 3) {
-                                square = [
-                                    grid[3].slice(0, 3),
-                                    grid[4].slice(0, 3),
-                                    grid[5].slice(0, 3)
-                                ]
+                                square = get_square(grid, 3, 0);
                             } else if (cur_col < 6) {
-                                square = [
-                                    grid[3].slice(3, 6),
-                                    grid[4].slice(3, 6),
-                                    grid[5].slice(3, 6)
-                                ]
+                                square = get_square(grid, 3, 3);
                             } else {
-                                square = [
-                                    grid[3].slice(6, 9),
-                                    grid[4].slice(6, 9),
-                                    grid[5].slice(6, 9)
-                                ]
+                                square = get_square(grid, 3, 6);
                             }
                         } else {
                             if (cur_col < 3) {
-                                square = [
-                                    grid[6].slice(0, 3),
-                                    grid[7].slice(0, 3),
-                                    grid[8].slice(0, 3)
-                                ]
+                                square = get_square(grid, 6, 0);
                             } else if (cur_col < 6) {
-                                square = [
-                                    grid[6].slice(3, 6),
-                                    grid[7].slice(3, 6),
-                                    grid[8].slice(3, 6)
-                                ]
+                                square = get_square(grid, 6, 3);
                             } else {
-                                square = [
-                                    grid[6].slice(6, 9),
-                                    grid[7].slice(6, 9),
-                                    grid[8].slice(6, 9)
-                                ]
+                                square = get_square(grid, 6, 6);
                             }
                         }
 
-                        if (square[0].concat(square[1]).concat(square[2]).indexOf(number) == -1) {
+                        if (square.indexOf(number) == -1) {
                             grid[cur_row][cur_col] = number;
 
                             if (check_grid(grid)) {
@@ -373,3 +309,4 @@ function start_game() {
 // TODO Подсвечивать неправильные ячейки
 // TODO Выбор темы
 // TODO Адаптивное выравнивание
+// TODO Удаление цифр
