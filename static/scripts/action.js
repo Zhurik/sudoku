@@ -236,9 +236,14 @@ function process_number() {
     var button = parseInt(event.keyCode);
     if (current_cell.row != -1) {
         if (button == 8 || button == 46) {
+            // Backspace и Delete
             document.getElementById("field").rows[current_cell.row].cells[current_cell.coll].innerHTML = "";
         } else if (button >= 49 && button <= 57) {
+            // Ряд цифр над буквами
             document.getElementById("field").rows[current_cell.row].cells[current_cell.coll].innerHTML = button - 48;
+        } else if (button >= 97 && button <= 105) {
+            // Numpad
+            document.getElementById("field").rows[current_cell.row].cells[current_cell.coll].innerHTML = button - 96;
         }
     }
 
