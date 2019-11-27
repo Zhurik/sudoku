@@ -1,3 +1,0 @@
-# Sudoku generator
-
-Генератор судоку
