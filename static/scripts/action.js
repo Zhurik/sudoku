@@ -310,9 +310,18 @@ function start_game() {
     }
 }
 
+function change_theme() {
+    if (document.getElementById("darken").innerHTML == "Светлая тема") {
+        document.getElementById("darken").innerHTML = "Темная тема";
+        document.getElementsByTagName("link")[0].href = "./static/style/light.css";
+    } else if (document.getElementById("darken").innerHTML == "Темная тема") {
+        document.getElementById("darken").innerHTML = "Светлая тема";
+        document.getElementsByTagName("link")[0].href = "./static/style/dark.css";
+    }
+}
+
 // TODO Уровни сложности
 // TODO Слово Sudoku на разных языках
 // TODO Отрефакторить код
 // TODO Подсвечивать неправильные ячейки
-// TODO Выбор темы
 // TODO Адаптивное выравнивание
