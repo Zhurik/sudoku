@@ -228,6 +228,7 @@ function check_game_over() {
     }
 
     alert("Игра закончена!!!");
+    alert("Ты пидор!");
     alert("Для новой игры обновите страницу");
     return true;
 }
